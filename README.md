@@ -1,6 +1,8 @@
 I-wanna-clean-keyboard
 ======================
 
+![Screenshot](Screenshot.png)
+
 This app won't clean your keyboard... but it could block the keyboard input when you were cleaning the keyboard...
 
 ---
