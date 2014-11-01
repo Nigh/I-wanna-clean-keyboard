@@ -2,6 +2,13 @@
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
 
+blockExKey:=Object()
+blockExKey.Insert("LWin")
+blockExKey.Insert("RWin")
+blockExKey.Insert("CapsLock")
+blockExKey.Insert("PrintScreen")
+blockExKey.Insert("Sleep")
+
 block:=0
 ui:=Object()
 ui["size"]:={w:320,h:160}
@@ -73,12 +80,19 @@ btn1:
 if(!block){
 	SetImage(button1,hBitmap.button1Disable)
 	block:=1
+	Loop, % blockExKey.maxIndex()
+	Hotkey, % blockExKey[A_Index], block, On
 	SetTimer, blockKeyboard, -1
 }Else{
 	SetImage(button1,hBitmap.button1Hover)
 	block:=0
+	Loop, % blockExKey.maxIndex()
+	Hotkey, % blockExKey[A_Index], block, Off
 	Input, _,T0.1
 }
+Return
+
+block:
 Return
 
 blockKeyboard:
