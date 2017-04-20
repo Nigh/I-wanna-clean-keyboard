@@ -33,7 +33,7 @@ If(!pToken := Gdip_Startup())
 	ExitApp, -1
 
 OnExit, Exit
-Gui, -Caption +AlwaysOnTop +hwndGui1 -Owner
+Gui, -Caption +AlwaysOnTop +hwndGui1 -Owner -DPIScale
 Gui, Color, EAEAEA,1ba1e2
 OnMessage(0x200, "WM_MOUSEMOVE")
 ;~ --------------------------------------------------title
