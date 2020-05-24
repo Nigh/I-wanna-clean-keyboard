@@ -237,8 +237,6 @@ ExitFunc(ExitReason, ExitCode)
 	global pToken
 	Gdip_Shutdown(pToken)
 }
-F6::Reload
-F5::
 Exit:
 GuiClose:
 Gdip_Shutdown(pToken)
