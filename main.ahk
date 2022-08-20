@@ -7,6 +7,8 @@
 #MaxThreadsPerHotkey 1
 
 blockExKey:=Array()
+blockExKey.Push("LShift")
+blockExKey.Push("RShift")
 blockExKey.Push("LWin")
 blockExKey.Push("RWin")
 blockExKey.Push("CapsLock")
