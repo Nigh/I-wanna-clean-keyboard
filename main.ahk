@@ -4,12 +4,6 @@
 #MaxThreadsPerHotkey 1
 #Include ./web_gui/Neutron.ahk
 
-class donothing {
-    Call() {
-        return
-    }
-}
-
 block:=0
 InHook := InputHook("M L16")
 InHook.VisibleNonText := False
