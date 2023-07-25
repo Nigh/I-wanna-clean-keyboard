@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<style>
+			html,
+			.prevent-select {
+				-webkit-user-select: none; /* Safari */
+				-ms-user-select: none; /* IE 10 and IE 11 */
+				user-select: none; /* Standard syntax */
+			}
+			.main {
+				position: fixed;
+				color: rgb(187, 187, 187);
+				width: 100%;
+				height: 100vh;
+				margin: 0;
+				padding-left: 1em;
+				padding-top: 0.2em;
+			}
+			h1 {
+				font-family: "Lucida Console", "Courier New", monospace;
+				font-size: 2.5em;
+				font-weight: bold;
+				margin-bottom: 0.3em;
+			}
+			.buttons {
+				margin-bottom: 10px;
+			}
+			.buttons button {
+				font-family: "Lucida Handwriting", "Brush Script MT", Verdana;
+				font-weight: bold;
+				border: none;
+				border-radius: 7px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 1.5em;
+				display: inline-block;
+				height: 37vh;
+				width: 40%;
+				color: white;
+				margin-right: 2%;
+				padding: 0.25em 0.5em;
+				transition-duration: 0.4s;
+			}
+
+			button.locked#btn_block {
+				background: rgba(95, 95, 95, 0.8);
+				border: 2px solid #fdfdfd;
+			}
+			button.unlocked#btn_block {
+				background: rgba(230, 51, 60, 0.2);
+				border: 2px solid #e6333c;
+			}
+			button#btn_exit {
+				background: rgba(10, 53, 110, 0.205);
+				border: 2px solid #0a356e;
+			}
+			button.locked#btn_block:hover {
+				background-color: #3882c7;
+			}
+			button.unlocked#btn_block:hover {
+				background-color: #e6333c;
+			}
+			button#btn_exit:hover {
+				background-color: #0a356e;
+			}
+			.sign {
+				width: 84%;
+				font-family: "Brush Script MT", Verdana;
+				text-align: right;
+			}
+
+			.circles {
+				position: fixed;
+				z-index: -1;
+				margin: 0;
+				padding: 0;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				overflow: hidden;
+			}
+			.circles.unlocked {
+				background: rgba(8, 13, 27, 0.973);
+			}
+			.circles.locked {
+				background: rgba(10, 10, 10, 0.9);
+			}
+
+
+			.circles li {
+				z-index: -1;
+				position: absolute;
+				display: block;
+				list-style: none;
+				width: 10px;
+				height: 10px;
+				bottom: -60px;
+				animation: animate 25s linear infinite;
+			}
+			.circles.unlocked li {
+				background: rgba(255, 255, 255, 0.103);
+				animation-play-state:running;
+			}
+			.circles.locked li {
+				animation-play-state:paused;
+				background: rgba(255, 100, 100, 0.31);
+			}
+
+			.circles li:nth-child(1) {
+				left: 25%;
+				width: 25px;
+				height: 25px;
+				animation-delay: 0s;
+			}
+
+			.circles li:nth-child(2) {
+				left: 10%;
+				width: 10px;
+				height: 10px;
+				animation-delay: 2s;
+				animation-duration: 12s;
+			}
+
+			.circles li:nth-child(3) {
+				left: 70%;
+				width: 10px;
+				height: 10px;
+				animation-delay: 4s;
+			}
+
+			.circles li:nth-child(4) {
+				left: 40%;
+				width: 20px;
+				height: 20px;
+				animation-delay: 0s;
+				animation-duration: 18s;
+			}
+
+			.circles li:nth-child(5) {
+				left: 65%;
+				width: 10px;
+				height: 10px;
+				animation-delay: 0s;
+			}
+
+			.circles li:nth-child(6) {
+				left: 75%;
+				width: 40px;
+				height: 40px;
+				animation-delay: 3s;
+			}
+
+			.circles li:nth-child(7) {
+				left: 35%;
+				width: 50px;
+				height: 50px;
+				animation-delay: 7s;
+			}
+
+			.circles li:nth-child(8) {
+				left: 50%;
+				width: 15px;
+				height: 15px;
+				animation-delay: 15s;
+				animation-duration: 45s;
+			}
+
+			.circles li:nth-child(9) {
+				left: 20%;
+				width: 8px;
+				height: 8px;
+				animation-delay: 2s;
+				animation-duration: 35s;
+			}
+
+			.circles li:nth-child(10) {
+				left: 85%;
+				width: 50px;
+				height: 50px;
+				animation-delay: 0s;
+				animation-duration: 11s;
+			}
+
+			@keyframes animate {
+				0% {
+					transform: translateY(0) rotate(0deg);
+					opacity: 1;
+					border-radius: 25%;
+				}
+
+				100% {
+					transform: translateY(-500px) rotate(540deg);
+					opacity: 0;
+					border-radius: 45%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<h1 onmousedown="neutron.DragTitleBar()">iwck</h1>
+			<div class="buttons">
+				<button class="unlocked" id="btn_block" onclick="ahk.Clicked(event)">
+					Block
+				</button>
+				<button id="btn_exit" onclick="neutron.Close()">Exit</button>
+			</div>
+			<div class="sign"><span>github.com/Nigh</span></div>
+		</div>
+		<div class="area">
+			<ul class="circles unlocked">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script></script>
+	</body>
+</html>
