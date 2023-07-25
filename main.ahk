@@ -1,4 +1,4 @@
-
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 #Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
@@ -14,7 +14,7 @@ block:=0
 InHook := InputHook("M L16")
 InHook.VisibleNonText := False
 title := "iwck"
-neutron := NeutronWindow().Load(".\html\index.html")
+neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w350 h247", title)
