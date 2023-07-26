@@ -1,4 +1,8 @@
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-SetName iwck
+;@Ahk2Exe-SetVersion 3.0
+;@Ahk2Exe-SetMainIcon iwck.ico
+;@Ahk2Exe-ExeName iwck
 #Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
