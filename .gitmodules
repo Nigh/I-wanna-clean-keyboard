@@ -1,4 +1,4 @@
 [submodule "web_gui"]
 	path = web_gui
-	url = https://github.com/G33kDude/Neutron.ahk.git
+	url = git@github.com:Nigh/Neutron.ahk.git
 	branch = v2
