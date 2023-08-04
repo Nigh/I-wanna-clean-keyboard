@@ -20,7 +20,6 @@
 - `2023.07.26`
   - migrating to AHK v2.0.4
   - use the [Neutron.ahk](https://github.com/G33kDude/Neutron.ahk.git) instead of the GDIp
-  - change to dark style
 - `2020.05.25`
   - migrating to AHK v2-alpha
   - use the [new GDI+ lib](https://github.com/mmikeww/AHKv2-Gdip) instead of the old one
