@@ -1,4 +1,4 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-SetName iwck
 ;@Ahk2Exe-SetVersion 3.0
 ;@Ahk2Exe-SetMainIcon iwck.ico
@@ -54,7 +54,7 @@ blockKeyboard() {
 #HotIf block==1
 LWin::Return
 RWin::Return
-CapsLock::Return
+*CapsLock::Return
 PrintScreen::Return
 Sleep::Return
 ; F1::Return
