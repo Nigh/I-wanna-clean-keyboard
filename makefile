@@ -1,16 +1,6 @@
 
 .PHONY: default
 
-define NORMAL_SETTING
-;@Ahk2Exe-ExeName iwck
-VNT:=0
-endef
-
-define VNT_SETTING
-;@Ahk2Exe-ExeName iwck-VNT
-VNT:=1
-endef
-
 default:
 	@echo build normal version
 	@echo ;@Ahk2Exe-ExeName iwck > setting.ahk
