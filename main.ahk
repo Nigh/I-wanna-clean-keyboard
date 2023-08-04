@@ -1,8 +1,12 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
-;@Ahk2Exe-SetName iwck
-;@Ahk2Exe-SetVersion 3.0
+﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-SetVersion v3.02
 ;@Ahk2Exe-SetMainIcon iwck.ico
+;@Ahk2Exe-SetName i wanna clean keyboard
+;@Ahk2Exe-Base AutoHotkey64.exe
 ;@Ahk2Exe-ExeName iwck
+;@Ahk2Exe-SetDescription iwck
+#include setting.ahk
+
 #Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
@@ -10,13 +14,19 @@
 
 block := 0
 InHook := InputHook("M L16")
-InHook.VisibleNonText := False
-title := "iwck"
+if VNT == 1 {
+	InHook.VisibleNonText := True
+	title := "iwck*"
+} else {
+	InHook.VisibleNonText := False
+	title := "iwck"
+}
 neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
 	.Opt("-DPIScale")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w350 h247", title)
+neutron.qs("h1#title").innerHTML := title
 return
 
 Clicked(neutron, event) {
