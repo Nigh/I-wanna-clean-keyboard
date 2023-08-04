@@ -1,4 +1,4 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-SetName iwck
 ;@Ahk2Exe-SetVersion 3.0
 ;@Ahk2Exe-SetMainIcon iwck.ico
@@ -14,6 +14,7 @@ InHook.VisibleNonText := False
 title := "iwck"
 neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
+	.Opt("-DPIScale")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w350 h247", title)
 return
