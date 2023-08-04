@@ -14,6 +14,7 @@ InHook.VisibleNonText := False
 title := "iwck"
 neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
+	.Opt("-DPIScale")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w350 h247", title)
 return
