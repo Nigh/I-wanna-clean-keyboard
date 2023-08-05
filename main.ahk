@@ -1,5 +1,5 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
-;@Ahk2Exe-SetVersion v3.02
+﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-SetVersion v3.03
 ;@Ahk2Exe-SetMainIcon iwck.ico
 ;@Ahk2Exe-SetName i wanna clean keyboard
 ;@Ahk2Exe-Base AutoHotkey64.exe
