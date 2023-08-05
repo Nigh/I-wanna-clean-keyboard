@@ -21,7 +21,6 @@ if VNT == 1 {
 	InHook.VisibleNonText := False
 	title := "iwck"
 }
-MsgBox("DPI:" A_ScreenDPI)
 dpiScale := A_ScreenDPI / 96
 winW := dpiScale * 350
 winH := dpiScale * 247
@@ -29,8 +28,10 @@ neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w" winW " h" winH, "iwck")
-if VNT != 1 {
-	neutron.qs("img#vnt").classList.add("hidden")
+
+neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
+if VNT == 1 {
+	neutron.qs("div#vnt").classList.remove("hidden")
 }
 return
 
