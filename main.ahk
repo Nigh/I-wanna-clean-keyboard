@@ -1,4 +1,4 @@
-﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-SetVersion v3.02
 ;@Ahk2Exe-SetMainIcon iwck.ico
 ;@Ahk2Exe-SetName i wanna clean keyboard
@@ -21,11 +21,14 @@ if VNT == 1 {
 	InHook.VisibleNonText := False
 	title := "iwck"
 }
+MsgBox("DPI:" A_ScreenDPI)
+dpiScale := A_ScreenDPI / 96
+winW := dpiScale * 350
+winH := dpiScale * 247
 neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
-	.Opt("-DPIScale")
 	.OnEvent("Close", (neutron) => ExitApp())
-	.Show("w350 h247", title)
+	.Show("w" winW " h" winH, "iwck")
 neutron.qs("h1#title").innerHTML := title
 return
 
