@@ -29,7 +29,9 @@ neutron := NeutronWindow().Load("index.html")
 	.Opt("-Resize")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w" winW " h" winH, "iwck")
-neutron.qs("h1#title").innerHTML := title
+if VNT != 1 {
+	neutron.qs("img#vnt").classList.add("hidden")
+}
 return
 
 Clicked(neutron, event) {
