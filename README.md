@@ -1,7 +1,9 @@
-`iwck` v3.0
-======================
 
-![Screenshot](Screenshot.png)
+<div align="center">
+  <img align="center" src="https://capsule-render.vercel.app/api?type=Waving&color=timeGradient&onedark=onedark&text=iwck&desc=v3.0&descSize=20&descAlign=60&descAlignY=64&height=180"/>
+
+  ![Screenshot](Screenshot.png)
+</div>
 
 `iwck` could block the keyboard input while you were eating, writing or cleaning the key on your laptop keyboard...  
 `iwck`可以帮助你在笔记本键盘上吃泡面、做笔记或者擦键盘时屏蔽键盘的输入。
