@@ -1,1 +1,4 @@
 ref
+*.exe
+dist
+compile_prop.ahk

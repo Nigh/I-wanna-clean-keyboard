@@ -1,16 +1,13 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
-;@Ahk2Exe-SetVersion v3.03
-;@Ahk2Exe-SetMainIcon iwck.ico
-;@Ahk2Exe-SetName i wanna clean keyboard
-;@Ahk2Exe-Base AutoHotkey64.exe
-;@Ahk2Exe-ExeName iwck
-;@Ahk2Exe-SetDescription iwck
-#include setting.ahk
-
+﻿
 #Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
+VNT := 0
+#include *i compile_prop.ahk
 #Include ./web_gui/Neutron.ahk
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+
+#include *i setting.ahk
 
 block := 0
 InHook := InputHook("M L16")
