@@ -1,16 +1,13 @@
-﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
-;@Ahk2Exe-SetVersion v3.03
-;@Ahk2Exe-SetMainIcon iwck.ico
-;@Ahk2Exe-SetName i wanna clean keyboard
-;@Ahk2Exe-Base AutoHotkey64.exe
-;@Ahk2Exe-ExeName iwck
-;@Ahk2Exe-SetDescription iwck
-#include setting.ahk
-
+﻿
 #Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
+VNT := 0
+#include *i compile_prop.ahk
 #Include ./web_gui/Neutron.ahk
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+
+#include *i setting.ahk
 
 block := 0
 InHook := InputHook("M L16")
@@ -74,28 +71,13 @@ RWin:: Return
 *CapsLock:: Return
 PrintScreen:: Return
 Sleep:: Return
-; F1::Return
-; F2::Return
-; F3::Return
-; F4::Return
-; F5::Return
-; F6::Return
-; F7::Return
-; F8::Return
-; F9::Return
-; F10::Return
-; F11::Return
-; F12::Return
-; F13::Return
-; F14::Return
-; F15::Return
-; F16::Return
-; F17::Return
-; F18::Return
-; F19::Return
-; F20::Return
-; F21::Return
-; F22::Return
-; F23::Return
-; F24::Return
+
+Tab:: Return
+CapsLock:: Return
+LShift:: Return
+RShift:: Return
+LCtrl:: Return
+RCtrl:: Return
+LAlt:: Return
+RAlt:: Return
 #HotIf
