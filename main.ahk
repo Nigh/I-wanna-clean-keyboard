@@ -1,4 +1,4 @@
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-SetMainIcon iwck.ico
 ;@Ahk2Exe-SetName i wanna clean keyboard
 ;@Ahk2Exe-ExeName iwck
@@ -34,6 +34,9 @@ neutron := NeutronWindow().Load(path)
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w" winW " h" winH, "iwck")
 
+neutron.qs(".ver>span#ahk").innerHTML := "ahk" A_AhkVersion
+neutron.qs(".ver>span#ahk").classList.add("hidden")
+neutron.qs(".ver>span#iwck").innerHTML := version
 neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
 if VNT == 1 {
 	neutron.qs("div#vnt").classList.remove("hidden")
