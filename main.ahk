@@ -7,6 +7,7 @@ VNT := 0
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 
 #include *i setting.ahk
+#include meta.ahk
 
 block := 0
 InHook := InputHook("M L16")
@@ -32,7 +33,11 @@ neutron := NeutronWindow().Load(path)
 
 neutron.qs(".ver>span#ahk").innerHTML := "ahk" A_AhkVersion
 neutron.qs(".ver>span#ahk").classList.add("hidden")
-neutron.qs(".ver>span#iwck").innerHTML := version
+ver := "v" version
+if VNT == 1 {
+	ver .= " VNT"
+}
+neutron.qs(".ver>span#iwck").innerHTML := ver
 neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
 if VNT == 1 {
 	neutron.qs("div#vnt").classList.remove("hidden")
