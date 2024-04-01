@@ -1,5 +1,4 @@
-﻿
-#Requires AutoHotkey v2.0
+﻿#Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
 VNT := 0
@@ -8,6 +7,7 @@ VNT := 0
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 
 #include *i setting.ahk
+#include meta.ahk
 
 block := 0
 InHook := InputHook("M L16")
@@ -21,11 +21,23 @@ if VNT == 1 {
 dpiScale := A_ScreenDPI / 96
 winW := dpiScale * 350
 winH := dpiScale * 247
-neutron := NeutronWindow().Load("index.html")
+if A_IsCompiled {
+	path := "index.html"
+} else {
+	path := "./html/index.html"
+}
+neutron := NeutronWindow().Load(path)
 	.Opt("-Resize")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w" winW " h" winH, "iwck")
 
+neutron.qs(".ver>span#ahk").innerHTML := "ahk" A_AhkVersion
+neutron.qs(".ver>span#ahk").classList.add("hidden")
+ver := "v" version
+if VNT == 1 {
+	ver .= " VNT"
+}
+neutron.qs(".ver>span#iwck").innerHTML := ver
 neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
 if VNT == 1 {
 	neutron.qs("div#vnt").classList.remove("hidden")
