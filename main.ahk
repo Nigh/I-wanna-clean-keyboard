@@ -1,11 +1,11 @@
-﻿;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
-;@Ahk2Exe-SetVersion v3.03
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-SetMainIcon iwck.ico
 ;@Ahk2Exe-SetName i wanna clean keyboard
-;@Ahk2Exe-Base AutoHotkey64.exe
 ;@Ahk2Exe-ExeName iwck
 ;@Ahk2Exe-SetDescription iwck
-#include setting.ahk
+
+VNT := 0
+#include *i setting.ahk
 
 #Requires AutoHotkey v2.0
 #NoTrayIcon
@@ -24,7 +24,12 @@ if VNT == 1 {
 dpiScale := A_ScreenDPI / 96
 winW := dpiScale * 350
 winH := dpiScale * 247
-neutron := NeutronWindow().Load("index.html")
+if A_IsCompiled {
+	path := "index.html"
+} else {
+	path := "./html/index.html"
+}
+neutron := NeutronWindow().Load(path)
 	.Opt("-Resize")
 	.OnEvent("Close", (neutron) => ExitApp())
 	.Show("w" winW " h" winH, "iwck")
