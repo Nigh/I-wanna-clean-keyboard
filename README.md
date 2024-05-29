@@ -2,7 +2,8 @@
 <div align="center">
   <img src="https://socialify.git.ci/Nigh/I-wanna-clean-keyboard/image?description=1&font=KoHo&logo=https%3A%2F%2Fraw.githubusercontent.com%2FNigh%2FI-wanna-clean-keyboard%2Fmaster%2Flogo%2Flogo.png&name=1&pattern=Circuit%20Board&stargazers=1&theme=Auto" alt="I-wanna-clean-keyboard" width="640" height="320" />
 
-  ![Screenshot](Screenshot.png)
+https://github.com/Nigh/I-wanna-clean-keyboard/assets/1407471/a51c57e5-773a-4ff4-8fcd-cd9337d9bf4e
+
 </div>
 
 `iwck` could block the keyboard input while you were eating, writing or cleaning the key on your laptop keyboard...  
