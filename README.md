@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img align="center" src="https://capsule-render.vercel.app/api?type=Waving&color=timeGradient&onedark=onedark&text=iwck&desc=v3.0&descSize=20&descAlign=60&descAlignY=64&height=180"/>
+  <img src="https://socialify.git.ci/Nigh/I-wanna-clean-keyboard/image?description=1&font=KoHo&logo=https%3A%2F%2Fraw.githubusercontent.com%2FNigh%2FI-wanna-clean-keyboard%2Fmaster%2Flogo%2Flogo.png&name=1&pattern=Circuit%20Board&stargazers=1&theme=Auto" alt="I-wanna-clean-keyboard" width="640" height="320" />
 
   ![Screenshot](Screenshot.png)
 </div>
