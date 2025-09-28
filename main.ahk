@@ -133,9 +133,9 @@ Clicked(neutron, event) {
 			ExitProc()
 	}
 	if(mode=="mouseready") {
-		Hotkey("Esc", EscOnMouseReady)
+		Hotkey("Esc", EscOnMouseReady, "On")
 	} else {
-		Hotkey("Esc", "Off")
+		Hotkey("Esc", (*)=>{}, "Off")
 	}
 }
 
@@ -144,7 +144,7 @@ EscOnMouseReady(*) {
 	
 	StartBlock("mouse")
 	uiMode(mode)
-	Hotkey("Esc", EscOnMouseLock)
+	Hotkey("Esc", EscOnMouseLock, "On")
 }
 EscOnMouseLock(*) {
 	global mode := ""
