@@ -48,7 +48,7 @@ compile() {
 
 	try
 	{
-		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 1")
+		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 0")
 	}
 	catch as e
 	{
