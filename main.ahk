@@ -1,7 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
-VNT := 0
 #include *i compile_prop.ahk
 #Include ./web_gui/Neutron.ahk
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
@@ -11,13 +10,10 @@ VNT := 0
 
 block := 0
 InHook := InputHook("M L16")
-if VNT == 1 {
-	InHook.VisibleNonText := True
-	title := "iwck*"
-} else {
-	InHook.VisibleNonText := False
-	title := "iwck"
-}
+
+InHook.VisibleNonText := False
+title := "iwck"
+
 dpiScale := A_ScreenDPI / 96
 winW := dpiScale * 350
 winH := dpiScale * 247
@@ -34,14 +30,8 @@ neutron := NeutronWindow().Load(path)
 neutron.qs(".ver>span#ahk").innerHTML := "ahk" A_AhkVersion
 neutron.qs(".ver>span#ahk").classList.add("hidden")
 ver := "v" version
-if VNT == 1 {
-	ver .= " VNT"
-}
 neutron.qs(".ver>span#iwck").innerHTML := ver
 neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
-if VNT == 1 {
-	neutron.qs("div#vnt").classList.remove("hidden")
-}
 return
 
 Clicked(neutron, event) {
