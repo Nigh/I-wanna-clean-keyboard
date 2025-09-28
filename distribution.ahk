@@ -3,14 +3,11 @@ SetWorkingDir(A_ScriptDir)
 
 #include meta.ahk
 
-write_prop(vnt) {
+write_prop() {
 	global
 	try
 	{
 		_name := baseName
-		if(vnt > 0) {
-			_name .= "-VNT"
-		}
 		binaryFilename := _name ".exe"
 		downloadFilename := _name ".zip"
 		props := FileOpen("compile_prop.ahk", "w")
@@ -18,7 +15,6 @@ write_prop(vnt) {
 		props.WriteLine(";@Ahk2Exe-SetVersion " version)
 		props.WriteLine(";@Ahk2Exe-SetMainIcon iwck.ico")
 		props.WriteLine(";@Ahk2Exe-ExeName " _name)
-		props.WriteLine("VNT := " vnt)
 		props.Close()
 	}
 	catch as e
@@ -52,7 +48,7 @@ compile() {
 
 	try
 	{
-		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 1")
+		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 0")
 	}
 	catch as e
 	{
@@ -72,8 +68,6 @@ compile() {
 	FileDelete(binaryFilename)
 	FileMove(downloadFilename, "dist\" downloadFilename, 1)
 }
-write_prop(0)
-compile()
-write_prop(1)
+write_prop()
 compile()
 MsgBox("Build Finished")
