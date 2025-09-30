@@ -7,6 +7,10 @@
 `iwck` could block the keyboard input while you were eating, writing or cleaning the key on your laptop keyboard. Now also supports blocking mouse input...  
 `iwck`可以帮助你在笔记本键盘上吃泡面、做笔记或者擦键盘时屏蔽键盘的输入。现在也添加了对鼠标的支持。
 
+## screenshot
+<img width="437" height="307" alt="Screenshot 2025-09-28 204740" src="https://github.com/user-attachments/assets/025c8a1d-c072-4975-aab5-56ff6f8f025f" />
+
+
 ## usage
 
 - press **keyboard button** to block or unblock your keyboard input.  
