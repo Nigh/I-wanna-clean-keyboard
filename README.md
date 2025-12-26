@@ -2,6 +2,7 @@
 <div align="center">
 <img width="256" height="256" alt="logo" src="https://github.com/user-attachments/assets/56662a6c-ec9c-42b7-9e7a-4c59182c7901" />
 <img alt="title" src="https://capsule-render.vercel.app/api?type=transparent&fontColor=dbdbdb&text=I%20Wanna%20Clean%20Keyboard&desc=and%20mouse&descAlignY=78&descAlign=76&height=80&fontSize=48"/>
+<a href="https://hellogithub.com/repository/Nigh/I-wanna-clean-keyboard" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=1b127af0ff114f17b796318d883515b0&claim_uid=fzFw5oyluD4xqHa&theme=dark" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 </div>
 
 `iwck` could block the keyboard input while you were eating, writing or cleaning the key on your laptop keyboard. Now also supports blocking mouse input...  
