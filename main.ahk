@@ -2,8 +2,9 @@
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
 #include *i compile_prop.ahk
-#Include ./web_gui/Neutron.ahk
+#Include ./webview2/WebViewToo.ahk
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-AddResource *10 %A_ScriptDir%\webview2\64bit\WebView2Loader.dll, 64bit\WebView2Loader.dll
 
 #include *i setting.ahk
 #include meta.ahk
@@ -29,39 +30,78 @@ winH := dpiScale * 247
 if A_IsCompiled {
 	path := "index.html"
 } else {
-	path := "./html/index.html"
+	path := A_ScriptDir "\html\index.html"
 }
-neutron := NeutronWindow().Load(path)
-	.Opt("-Resize")
-	.OnEvent("Close", (neutron) => ExitProc())
-	.Show("w" winW " h" winH, "iwck")
+WebViewSettings := {}
+if A_IsCompiled {
+	WebViewCtrl.CreateFileFromResource("64bit\WebView2Loader.dll", WebViewCtrl.TempDir)
+	WebViewSettings := { DllPath: WebViewCtrl.TempDir "\64bit\WebView2Loader.dll" }
+}
 
-neutron.qs(".ver>span#ahk").innerHTML := "ahk" A_AhkVersion
-neutron.qs(".ver>span#ahk").classList.add("hidden")
-ver := "v" version
-neutron.qs(".ver>span#iwck").innerHTML := ver
-neutron.qs("html").setAttribute("style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
+wvGui := WebViewGui("-Caption -Resize", title, , WebViewSettings)
+wvGui.OnEvent("Close", (*) => ExitProc())
+wvGui.AddCallbackToScript("Clicked", Clicked)
+wvGui.IsParentWindowDraggingEnabled := true
+wvGui.NavigationCompleted((*) => InitUi())
+wvGui.Navigate(path)
+wvGui.Show("w" winW " h" winH)
 return
 
+InitUi(*) {
+	global version
+	jsSetAttr("html", "style", "font-size:" Round(A_ScreenDPI * 100 / 192) "px")
+	jsSetHtml(".ver>span#ahk", "ahk" A_AhkVersion)
+	jsAddClass(".ver>span#ahk", "hidden")
+	jsSetHtml(".ver>span#iwck", "v" version)
+}
+
+js(script) {
+	global wvGui
+	try wvGui.ExecuteScriptAsync(script)
+}
+
+jsStr(value) {
+	value := StrReplace(value, "\", "\\")
+	value := StrReplace(value, '"', '\"')
+	value := StrReplace(value, "`r", "\r")
+	value := StrReplace(value, "`n", "\n")
+	return '"' value '"'
+}
+
+jsSetHtml(selector, value) {
+	js("document.querySelector(" jsStr(selector) ").innerHTML = " jsStr(value) ";")
+}
+
+jsSetAttr(selector, name, value) {
+	js("document.querySelector(" jsStr(selector) ").setAttribute(" jsStr(name) ", " jsStr(value) ");")
+}
+
+jsAddClass(selector, cls) {
+	js("document.querySelector(" jsStr(selector) ").classList.add(" jsStr(cls) ");")
+}
+
+jsRemoveClass(selector, cls) {
+	js("document.querySelector(" jsStr(selector) ").classList.remove(" jsStr(cls) ");")
+}
 
 bgClass(c) {
 	switch c {
 		case "locked":
-			neutron.qs(".circles").classList.remove("unlocked")
-			neutron.qs(".circles").classList.add("locked")
+			jsRemoveClass(".circles", "unlocked")
+			jsAddClass(".circles", "locked")
 		case "unlocked":
-			neutron.qs(".circles").classList.remove("locked")
-			neutron.qs(".circles").classList.add("unlocked")
+			jsRemoveClass(".circles", "locked")
+			jsAddClass(".circles", "unlocked")
 	}
 }
 btnClass(id, cls) {
 	switch cls {
 		case "locked":
-			neutron.qs("button#" id).classList.remove("unlocked")
-			neutron.qs("button#" id).classList.add("locked")
+			jsRemoveClass("button#" id, "unlocked")
+			jsAddClass("button#" id, "locked")
 		case "unlocked":
-			neutron.qs("button#" id).classList.remove("locked")
-			neutron.qs("button#" id).classList.add("unlocked")
+			jsRemoveClass("button#" id, "locked")
+			jsAddClass("button#" id, "unlocked")
 	}
 }
 
@@ -79,33 +119,33 @@ uiMode(m) {
 				btnClass(id, "unlocked")
 			}
 			bgClass("unlocked")
-			neutron.qs("div.mouse-icon").classList.remove("hidden")
-			neutron.qs("div.press-esc").classList.add("hidden")
+			jsRemoveClass("div.mouse-icon", "hidden")
+			jsAddClass("div.press-esc", "hidden")
 		case "kbd":
 			btnClass(btn_ids[1], "locked")
 			btnClass(btn_ids[2], "unlocked")
 			bgClass("locked")
-			neutron.qs("div.mouse-icon").classList.remove("hidden")
-			neutron.qs("div.press-esc").classList.add("hidden")
+			jsRemoveClass("div.mouse-icon", "hidden")
+			jsAddClass("div.press-esc", "hidden")
 		case "mouseready":
 			btnClass(btn_ids[1], "unlocked")
 			btnClass(btn_ids[2], "unlocked")
 			bgClass("unlocked")
-			neutron.qs("div.mouse-icon").classList.add("hidden")
-			neutron.qs("div.press-esc").classList.remove("hidden")
+			jsAddClass("div.mouse-icon", "hidden")
+			jsRemoveClass("div.press-esc", "hidden")
 		case "mouse":
 			btnClass(btn_ids[2], "locked")
 			btnClass(btn_ids[1], "unlocked")
 			bgClass("locked")
-			neutron.qs("div.mouse-icon").classList.remove("hidden")
-			neutron.qs("div.press-esc").classList.add("hidden")
+			jsRemoveClass("div.mouse-icon", "hidden")
+			jsAddClass("div.press-esc", "hidden")
 	}
 }
 
-Clicked(neutron, event) {
-	; MsgBox "You clicked: " event.target.id
+Clicked(webview, id) {
+	; MsgBox "You clicked: " id
 	global
-	switch event.target.id {
+	switch id {
 		case "btn_kbd":
 			if(mode=="" || mode=="mouse" || mode=="mouseready") {
 				if(mode=="mouse") {

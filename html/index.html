@@ -356,7 +356,7 @@
 		</style>
 		<style>
 			html {
-				/* font-size: 100px; */
+				font-size: 50px;
 				padding: 0;
 				margin: 0;
 			}
@@ -387,6 +387,8 @@
 				box-sizing: border-box;
 				margin-top: 0;
 				margin-bottom: .3rem;
+				app-region: drag;
+				-webkit-app-region: drag;
 			}
 			.hidden {
 				display: none;
@@ -447,6 +449,8 @@
 				align-items: center;
 				justify-content: space-between;
 				flex: 1;
+				app-region: no-drag;
+				-webkit-app-region: no-drag;
 			}
 			button {
 				font-family: "Lucida Handwriting", "Brush Script MT", Verdana;
@@ -623,19 +627,19 @@
 	</head>
 	<body>
 		<div class="main">
-			<div id="title" class="title-wrap" onmousedown="neutron.DragTitleBar()">
+			<div id="title" class="title-wrap" onmousedown="ahk.sync.DragParentWindow()">
 				<div class="title"></div>
 				<div class="title-sp hidden"></div>
 			</div>
 			<div class="buttons">
-				<button class="unlocked btn_block" id="btn_kbd" onclick="ahk.Clicked(event)">
+				<button class="unlocked btn_block" id="btn_kbd" onclick="ahk.sync.Clicked(this.id)">
 					<div class="keyboard-icon"></div>
 				</button>
-				<button class="unlocked btn_block" id="btn_mouse" onclick="ahk.Clicked(event)">
+				<button class="unlocked btn_block" id="btn_mouse" onclick="ahk.sync.Clicked(this.id)">
 					<div class="mouse-icon"></div>
 					<div class="press-esc hidden"></div>
 				</button>
-				<button id="btn_exit" onclick="ahk.Clicked(event)">
+				<button id="btn_exit" onclick="ahk.sync.Clicked(this.id)">
 					<div class="exit-icon"></div>
 				</button>
 			</div>
