@@ -12,16 +12,54 @@
 <img width="437" height="307" alt="Screenshot 2025-09-28 204740" src="https://github.com/user-attachments/assets/025c8a1d-c072-4975-aab5-56ff6f8f025f" />
 
 
-## usage
+## usage / 使用说明
 
-- press **keyboard button** to block or unblock your keyboard input.  
-点击 **键盘按钮** 切换键盘屏蔽状态
-- press **mouse button** then press `Esc` to block or unblock your mouse input.  
-点击 **鼠标按钮** 然后按 `ESC` 键切换鼠标屏蔽状态
-- press **exit button** to unblock your input and exit the app.  
-点击 **退出按钮** 解除屏蔽并退出
-- click the title `iwck` to drag the window.  
-点击标题 `iwck` 可以拖动窗口位置
+### Keyboard lock / 键盘屏蔽
+
+1. Click the **keyboard button** to block keyboard input immediately.
+2. Click the **keyboard button** again to restore keyboard input.
+
+1. 点击 **键盘按钮**，立即开启键盘屏蔽。
+2. 再次点击 **键盘按钮**，解除键盘屏蔽。
+
+### Mouse lock / 鼠标屏蔽
+
+1. Click the **mouse button** to enter ready mode. Mouse input is not blocked yet.
+2. Press `Esc` to start blocking mouse input.
+3. Press `Esc` again to restore mouse input.
+4. To cancel before locking, click the **mouse button** again.
+
+1. 点击 **鼠标按钮** 进入准备状态。此时鼠标尚未被屏蔽。
+2. 按下 `Esc`，开始屏蔽鼠标输入。
+3. 再次按下 `Esc`，解除鼠标屏蔽。
+4. 如果尚未按下 `Esc`，再次点击 **鼠标按钮** 可取消准备状态。
+
+Keyboard lock and mouse lock cannot be active together. Selecting one mode disables the other mode first.
+
+键盘屏蔽和鼠标屏蔽不能同时开启。选择另一种屏蔽模式时，当前模式会先解除。
+
+### Move and exit / 移动与退出
+
+- Press and drag the `iwck` title to move the window.
+- Click the **exit button** to restore all input and exit IWCK.
+
+- 按住并拖动 `iwck` 标题，可移动窗口。
+- 点击 **退出按钮**，解除所有输入屏蔽并退出 IWCK。
+
+## requirements / 运行要求
+
+- Windows 10 or Windows 11, x64 only. x86 and ARM64 are not supported.
+  仅支持 x64 版 Windows 10 或 Windows 11，不支持 x86 和 ARM64。
+- [Microsoft Edge WebView2 Evergreen Runtime](https://developer.microsoft.com/microsoft-edge/webview2/consumer/) must be installed. Windows 11 normally includes it.
+  必须安装 Microsoft Edge WebView2 Evergreen Runtime；Windows 11 通常已预装。
+- If the Runtime is missing or WebView2 cannot initialize, IWCK shows a startup error and exits instead of displaying a blank window.
+  如果缺少 Runtime 或 WebView2 初始化失败，IWCK 会显示启动错误并退出，不会继续显示空白窗口。
+
+## third-party dependency / 第三方依赖
+
+`webview2/64bit/WebView2Loader.dll` comes from Microsoft's `Microsoft.Web.WebView2` NuGet package, version `1.0.2957.106`, under that package's license. Its SHA-256 is `271b57e3ec03c436a15d80cafeb9fd1618a43793233d8b05c9446f8de0a51be4`.
+
+`webview2/64bit/WebView2Loader.dll` 来自 Microsoft 的 `Microsoft.Web.WebView2` NuGet 包 `1.0.2957.106`，遵循该包许可。SHA-256 为 `271b57e3ec03c436a15d80cafeb9fd1618a43793233d8b05c9446f8de0a51be4`。
 
 ## Behind the Code
 

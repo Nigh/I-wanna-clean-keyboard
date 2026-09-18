@@ -1,7 +1,13 @@
+#Requires AutoHotkey v2.0
 #SingleInstance Force
 SetWorkingDir(A_ScriptDir)
 
 #include meta.ahk
+
+if A_PtrSize != 8 {
+	MsgBox("构建仅支持 64 位 AutoHotkey。", "构建失败", "Iconx")
+	ExitApp()
+}
 
 write_prop() {
 	global
@@ -48,7 +54,7 @@ compile() {
 
 	try
 	{
-		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 0")
+		RunWait("./ahk-compile-toolset/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_ScriptDir "\ahk-compile-toolset\AutoHotkey64.exe`" /compress 0")
 	}
 	catch as e
 	{
@@ -70,4 +76,5 @@ compile() {
 }
 write_prop()
 compile()
-MsgBox("Build Finished")
+if EnvGet("CI") != "true"
+	MsgBox("Build Finished")
