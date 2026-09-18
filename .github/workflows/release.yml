@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Inject version
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}" -replace '^v', ''
+          $content = Get-Content meta.ahk -Raw
+          $content = $content -replace 'version := ".*?"', "version := `"$version`""
+          Set-Content meta.ahk -Value $content -NoNewline
+
+      - name: Build
+        run: ./ahk-compile-toolset/AutoHotkey64.exe ./distribution.ahk
+        env:
+          CI: "true"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: dist/iwck.zip
+          generate_release_notes: true

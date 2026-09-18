@@ -76,4 +76,5 @@ compile() {
 }
 write_prop()
 compile()
-MsgBox("Build Finished")
+if EnvGet("CI") != "true"
+	MsgBox("Build Finished")
