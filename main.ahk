@@ -1,9 +1,14 @@
 ﻿#Requires AutoHotkey v2.0
 #NoTrayIcon
 #MaxThreadsPerHotkey 1
+SetWorkingDir(A_ScriptDir)
+if A_PtrSize != 8 {
+	MsgBox("IWCK 仅支持 64 位 Windows 和 64 位 AutoHotkey。", "启动失败", "Iconx")
+	ExitApp()
+}
 #include *i compile_prop.ahk
 #Include ./webview2/WebViewToo.ahk
-;@Ahk2Exe-AddResource *10 %A_ScriptDir%\html\index.html
+;@Ahk2Exe-AddResource *23 %A_ScriptDir%\html\index.html
 ;@Ahk2Exe-AddResource *10 %A_ScriptDir%\webview2\64bit\WebView2Loader.dll, 64bit\WebView2Loader.dll
 
 #include *i setting.ahk
@@ -27,25 +32,45 @@ btn_ids := ["btn_kbd", "btn_mouse", "btn_exit"]
 dpiScale := A_ScreenDPI / 96
 winW := dpiScale * 350
 winH := dpiScale * 247
-if A_IsCompiled {
-	path := "index.html"
-} else {
-	path := A_ScriptDir "\html\index.html"
-}
+path := A_IsCompiled ? "index.html" : "html/index.html"
 WebViewSettings := {}
 if A_IsCompiled {
 	WebViewCtrl.CreateFileFromResource("64bit\WebView2Loader.dll", WebViewCtrl.TempDir)
 	WebViewSettings := { DllPath: WebViewCtrl.TempDir "\64bit\WebView2Loader.dll" }
 }
 
-wvGui := WebViewGui("-Caption -Resize", title, , WebViewSettings)
+try {
+	wvGui := WebViewGui("-Caption -Resize", title, , WebViewSettings)
+} catch as e {
+	MsgBox(
+		"WebView2 初始化失败。请安装 Microsoft Edge WebView2 Evergreen Runtime。`n`n" e.Message,
+		"启动失败",
+		"Iconx"
+	)
+	ExitApp()
+}
 wvGui.OnEvent("Close", (*) => ExitProc())
 wvGui.AddCallbackToScript("Clicked", Clicked)
 wvGui.IsParentWindowDraggingEnabled := true
-wvGui.NavigationCompleted((*) => InitUi())
+wvGui.NavigationCompleted(NavigationCompleted)
 wvGui.Navigate(path)
 wvGui.Show("w" winW " h" winH)
 return
+
+NavigationCompleted(_, args) {
+	if !args.IsSuccess {
+		if args.WebErrorStatus = 9 {
+			return
+		}
+		MsgBox(
+			"界面加载失败。WebView2 错误状态：" args.WebErrorStatus,
+			"启动失败",
+			"Iconx"
+		)
+		ExitApp()
+	}
+	InitUi()
+}
 
 InitUi(*) {
 	global version
@@ -57,7 +82,7 @@ InitUi(*) {
 
 js(script) {
 	global wvGui
-	try wvGui.ExecuteScriptAsync(script)
+	return wvGui.ExecuteScriptAsync(script)
 }
 
 jsStr(value) {

@@ -23,6 +23,21 @@
 - click the title `iwck` to drag the window.  
 点击标题 `iwck` 可以拖动窗口位置
 
+## requirements / 运行要求
+
+- Windows 10 or Windows 11, x64 only. x86 and ARM64 are not supported.
+  仅支持 x64 版 Windows 10 或 Windows 11，不支持 x86 和 ARM64。
+- [Microsoft Edge WebView2 Evergreen Runtime](https://developer.microsoft.com/microsoft-edge/webview2/consumer/) must be installed. Windows 11 normally includes it.
+  必须安装 Microsoft Edge WebView2 Evergreen Runtime；Windows 11 通常已预装。
+- If the Runtime is missing or WebView2 cannot initialize, IWCK shows a startup error and exits instead of displaying a blank window.
+  如果缺少 Runtime 或 WebView2 初始化失败，IWCK 会显示启动错误并退出，不会继续显示空白窗口。
+
+## third-party dependency / 第三方依赖
+
+`webview2/64bit/WebView2Loader.dll` comes from Microsoft's `Microsoft.Web.WebView2` NuGet package, version `1.0.2957.106`, under that package's license. Its SHA-256 is `271b57e3ec03c436a15d80cafeb9fd1618a43793233d8b05c9446f8de0a51be4`.
+
+`webview2/64bit/WebView2Loader.dll` 来自 Microsoft 的 `Microsoft.Web.WebView2` NuGet 包 `1.0.2957.106`，遵循该包许可。SHA-256 为 `271b57e3ec03c436a15d80cafeb9fd1618a43793233d8b05c9446f8de0a51be4`。
+
 ## Behind the Code
 
 Over a decade has passed since IWCK's initial release. This software was conceived during my university days, when eight of us shared one narrow desk in the dormitory. During chilly winters, we often resorted to using laptops on our beds, where the tiny foldable desks left no room for anything beyond the laptop itself.
