@@ -1,7 +1,3 @@
-[submodule "web_gui"]
-	path = web_gui
-	url = git@github.com:Nigh/Neutron.ahk.git
-	branch = v2
 [submodule "ahk-compile-toolset"]
 	path = ahk-compile-toolset
 	url = https://github.com/Nigh/ahk-compile-toolset.git
