@@ -198,9 +198,9 @@ Clicked(webview, id) {
 			ExitProc()
 	}
 	if(mode=="mouseready") {
-		Hotkey("Esc", EscOnMouseReady, "On")
-	} else {
-		Hotkey("Esc", (*)=>{}, "Off")
+		Hotkey("$Esc", EscOnMouseReady, "On")
+	} else if(mode!="mouse") {
+		Hotkey("$Esc", (*)=>{}, "Off")
 	}
 }
 
@@ -209,13 +209,14 @@ EscOnMouseReady(*) {
 	
 	StartBlock("mouse")
 	uiMode(mode)
-	Hotkey("Esc", EscOnMouseLock, "On")
+	Hotkey("$Esc", EscOnMouseLock, "On")
 }
 EscOnMouseLock(*) {
 	global mode := ""
 	
 	Unhook("mouse")
 	uiMode(mode)
+	Hotkey("$Esc", , "Off")
 }
 
 StartBlock(which){
